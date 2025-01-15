@@ -493,7 +493,7 @@ SELECT * FROM accounts WITH (SHAREDLOCK);
 UPDATE accounts SET Balance = Balance + 100 WHERE AccountID = 1;
 -- Transaction 2 is blocked until Transaction 1 releases the shared lock.
 ````
-### 1. **Exclusive Lock**
+### 2. **Exclusive Lock**
 - If a transaction has an exclusive lock on a data item, it can both read and write.
 
 #### Example 
@@ -513,6 +513,13 @@ SELECT * FROM accounts WHERE AccountID = 1;
 # Database Isolation Levels
 
 Isolation levels determine how much one transaction is kept separate from others happening at the same time. These levels help control issues like reading uncommitted changes or dealing with conflicting updates.
+
+
+## Types of Violations
+
+- **Dirty Read**: A transaction reads uncommitted changes from another transaction.
+- **Non-Repeatable Read**: A transaction reads the same data twice but gets different results due to another transaction modifying the data.
+- **Phantom Read**: A transaction reads a set of rows matching a condition, but another transaction inserts or deletes rows that would affect the results if re-read.
 
 ## There are 4 types of Levels
 
